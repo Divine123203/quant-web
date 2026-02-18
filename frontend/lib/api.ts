@@ -14,17 +14,8 @@ const api = axios.create({
   },
 });
 
-// Add a request interceptor to add the auth token to every request
-api.interceptors.request.use(
-  (config) => {
-    const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
-    return config;
-  },
-  (error) => Promise.reject(error)
-);
+// Auth interceptor removed for guest mode stability
+
 
 api.interceptors.response.use(
   (response) => response,

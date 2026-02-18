@@ -15,5 +15,5 @@ echo "Step 2: Checking/Seeding admin user..."
 python -m scripts.seed_user || echo "Seeding failed, but continuing..."
 
 echo "--- SETUP COMPLETE ---"
-echo "Starting FastAPI server on port 8000..."
-exec uvicorn app.main:app --host 0.0.0.0 --port 8000
+echo "Starting FastAPI server on port ${PORT:-8000}..."
+exec uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8000}
