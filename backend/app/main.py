@@ -11,16 +11,9 @@ from app.services.prediction_service import PredictionService
 app = FastAPI(title="QuantBet AI", version="0.1.0")
 
 # CORS Setup
-origins = [
-    "http://localhost:3000",
-    "http://localhost:8000",
-    "http://127.0.0.1:3000",
-    "http://127.0.0.1:8000",
-]
-
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
