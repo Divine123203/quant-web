@@ -27,3 +27,4 @@ pytest
 passlib[bcrypt]
 python-jose[cryptography]
 python-multipart
+email-validator
