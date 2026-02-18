@@ -197,9 +197,9 @@ export default function Dashboard() {
             <p className="text-sm font-semibold">{error}</p>
           </div>
           <div className="pl-8 text-xs font-mono opacity-70">
-            Current API URL: <span className="text-white">{process.env.NEXT_PUBLIC_API_URL || 'Not Set (Defaulting to localhost)'}</span>
+            Env Var (NEXT_PUBLIC_API_URL): <span className="text-white">{process.env.NEXT_PUBLIC_API_URL || 'Not Found'}</span>
             <br />
-            Diagnostic Check: <span className="text-white">Connecting to {process.env.NEXT_PUBLIC_API_URL ? 'External Backend' : 'Local Development Server'}</span>
+            Hardcoded Fallback: <span className="text-white">Active</span>
           </div>
         </div>
       )}

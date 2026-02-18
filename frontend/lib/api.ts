@@ -2,7 +2,11 @@ import axios from 'axios';
 import { Match } from '@/types';
 
 const getBaseURL = () => {
-  let url = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+  // Try environment variable first, then hardcoded production fallback, then localhost
+  let url = process.env.NEXT_PUBLIC_API_URL 
+    || 'https://quant-web-production-3f00.up.railway.app'
+    || 'http://localhost:8000';
+    
   if (url.endsWith('/')) url = url.slice(0, -1);
   return `${url}/api/v1/`;
 };
