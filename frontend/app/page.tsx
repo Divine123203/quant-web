@@ -95,9 +95,10 @@ export default function Dashboard() {
         const data = await getMatches();
         console.log("Fetched matches:", data);
         setMatches(data);
-      } catch (err) {
+      } catch (err: any) {
         console.error("Failed to load matches", err);
-        setError('Failed to load live data. Showing demo mode.');
+        const detail = err.response?.status ? `Error ${err.response.status}: ${err.message}` : "Connection Refused or DNS issue.";
+        setError(`Failed to load live data (${detail}). Showing demo mode.`);
       } finally {
         setLoading(false);
       }
@@ -190,9 +191,16 @@ export default function Dashboard() {
       </div>
 
       {error && (
-        <div className="bg-amber-500/10 border border-amber-500/20 text-amber-400 p-4 rounded-xl flex items-center gap-3">
-          <AlertTriangle size={20} />
-          <p className="text-sm">{error}</p>
+        <div className="bg-amber-500/10 border border-amber-500/20 text-amber-400 p-4 rounded-xl space-y-2">
+          <div className="flex items-center gap-3">
+            <AlertTriangle size={20} />
+            <p className="text-sm font-semibold">{error}</p>
+          </div>
+          <div className="pl-8 text-xs font-mono opacity-70">
+            Current API URL: <span className="text-white">{process.env.NEXT_PUBLIC_API_URL || 'Not Set (Defaulting to localhost)'}</span>
+            <br />
+            Diagnostic Check: <span className="text-white">Connecting to {process.env.NEXT_PUBLIC_API_URL ? 'External Backend' : 'Local Development Server'}</span>
+          </div>
         </div>
       )}
 
