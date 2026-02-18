@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { History as HistoryIcon, Clock, TrendingUp, ChevronRight, Loader2 } from 'lucide-react';
 import api from '@/lib/api';
@@ -9,15 +8,8 @@ import api from '@/lib/api';
 export default function HistoryPage() {
   const [history, setHistory] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
-  const router = useRouter();
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      router.push('/login');
-      return;
-    }
-
     async function fetchHistory() {
       try {
         const response = await api.get('/tickets/history');
@@ -29,7 +21,7 @@ export default function HistoryPage() {
       }
     }
     fetchHistory();
-  }, [router]);
+  }, []);
 
   return (
     <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">

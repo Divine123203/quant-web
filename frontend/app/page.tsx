@@ -90,12 +90,6 @@ export default function Dashboard() {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      router.push('/login');
-      return;
-    }
-
     async function loadMatches() {
       try {
         const data = await getMatches();
@@ -110,11 +104,6 @@ export default function Dashboard() {
     }
     loadMatches();
   }, []);
-
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    router.push('/login');
-  };
 
   // Use mock matches if API returns empty (for demo purposes if needed)
   const displayMatches = matches.length > 0 ? matches : []; 
@@ -189,12 +178,6 @@ export default function Dashboard() {
           </p>
         </div>
         <div className="flex gap-2">
-            <button 
-              onClick={handleLogout}
-              className="px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-sm font-medium transition-colors flex items-center gap-2 text-slate-300"
-            >
-               Logout
-            </button>
             <button 
               onClick={handleRefresh}
               disabled={loading}

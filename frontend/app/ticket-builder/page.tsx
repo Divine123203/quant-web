@@ -19,11 +19,8 @@ export default function TicketBuilder() {
   const router = useRouter();
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      router.push('/login');
-    }
-  }, [router]);
+    // Auth check removed
+  }, []);
 
   const handleGenerate = async () => {
     setIsGenerating(true);

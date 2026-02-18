@@ -29,11 +29,7 @@ api.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response?.status === 401 || error.response?.status === 403) {
-      // Handle unauthorized error - maybe redirect to login if we're not already there
-      if (typeof window !== 'undefined' && window.location.pathname !== '/login') {
-        localStorage.removeItem('token');
-        window.location.href = '/login';
-      }
+      console.warn('Authentication required for this endpoint');
     }
     console.error('API Error:', error.response?.data || error.message);
     return Promise.reject(error);
