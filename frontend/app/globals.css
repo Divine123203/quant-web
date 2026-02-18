@@ -1,0 +1,134 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  @keyframes accordion-down {
+    from { height: 0; }
+    to { height: var(--radix-accordion-content-height); }
+  }
+  @keyframes accordion-up {
+    from { height: var(--radix-accordion-content-height); }
+    to { height: 0; }
+  }
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #0f172a;
+
+  --card: #ffffff;
+  --card-foreground: #0f172a;
+ 
+  --popover: #ffffff;
+  --popover-foreground: #0f172a;
+ 
+  --primary: #2563eb;
+  --primary-foreground: #f8fafc;
+ 
+  --secondary: #f1f5f9;
+  --secondary-foreground: #0f172a;
+ 
+  --muted: #f1f5f9;
+  --muted-foreground: #64748b;
+ 
+  --accent: #f1f5f9;
+  --accent-foreground: #0f172a;
+ 
+  --destructive: #ef4444;
+  --destructive-foreground: #f8fafc;
+
+  --border: #e2e8f0;
+  --input: #e2e8f0;
+  --ring: #2563eb;
+ 
+  --radius: 0.5rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0B0E14; /* Deep Tech Blue/Black */
+    --foreground: #f8fafc;
+ 
+    --card: #151A23; /* Dark Card Surface */
+    --card-foreground: #f8fafc;
+ 
+    --popover: #151A23;
+    --popover-foreground: #f8fafc;
+ 
+    --primary: #3B82F6; /* Tech Blue */
+    --primary-foreground: #ffffff;
+ 
+    --secondary: #1E293B; /* Slate 800 */
+    --secondary-foreground: #f8fafc;
+ 
+    --muted: #1E293B;
+    --muted-foreground: #94a3b8;
+ 
+    --accent: #1E293B;
+    --accent-foreground: #f8fafc;
+ 
+    --destructive: #ef4444; /* Red 500 */
+    --destructive-foreground: #ffffff;
+ 
+    --border: #1E293B;
+    --input: #1E293B;
+    --ring: #3B82F6;
+  }
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@layer utilities {
+  .glass-panel {
+    @apply bg-black/40 backdrop-blur-md border border-white/10 shadow-xl;
+  }
+  
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-sm border border-white/5 hover:border-white/10 transition-colors duration-300;
+  }
+  
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-emerald-400;
+  }
+
+  .text-gradient-risk {
+     @apply bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-red-500;
+  }
+}
