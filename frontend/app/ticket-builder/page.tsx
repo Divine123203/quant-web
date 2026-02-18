@@ -26,7 +26,7 @@ export default function TicketBuilder() {
     setIsGenerating(true);
     setSaveStatus(null);
     try {
-      const response = await api.post('/tickets/generate', {
+      const response = await api.post('tickets/generate', {
         gameCount,
         riskLevel,
         marketType
@@ -46,7 +46,7 @@ export default function TicketBuilder() {
     if (matches.length === 0) return;
     setIsSaving(true);
     try {
-      await api.post('/tickets/save', {
+      await api.post('tickets/save', {
         total_odds: ticketStats.totalOdds,
         potential_return: ticketStats.expectedReturn,
         matches: matches.map(m => ({

@@ -12,7 +12,7 @@ export default function HistoryPage() {
   useEffect(() => {
     async function fetchHistory() {
       try {
-        const response = await api.get('/tickets/history');
+        const response = await api.get('tickets/history');
         setHistory(response.data);
       } catch (err) {
         console.error("Failed to load history", err);

@@ -2,8 +2,9 @@ import axios from 'axios';
 import { Match } from '@/types';
 
 const getBaseURL = () => {
-  const url = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
-  return url.endsWith('/api/v1') ? url : `${url}/api/v1`;
+  let url = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+  if (url.endsWith('/')) url = url.slice(0, -1);
+  return `${url}/api/v1/`;
 };
 
 const api = axios.create({
@@ -37,7 +38,7 @@ api.interceptors.response.use(
 );
 
 export const getMatches = async (): Promise<Match[]> => {
-  const response = await api.get('/matches/');
+  const response = await api.get('matches/');
   return response.data;
 };
 

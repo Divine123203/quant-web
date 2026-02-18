@@ -148,7 +148,7 @@ export default function Dashboard() {
   const handleRefresh = async () => {
     setLoading(true);
     try {
-      await api.post('/system/refresh');
+      await api.post('system/refresh'); // Already a relative path
       // Reload matches after refresh
       const data = await getMatches();
       setMatches(data);
