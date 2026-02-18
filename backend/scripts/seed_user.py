@@ -12,20 +12,26 @@ def seed_user():
         
         for user_data in users_to_seed:
             existing_user = db.query(User).filter(User.email == user_data["email"]).first()
+            hashed_pwd = get_password_hash("admin123")
+            
             if not existing_user:
                 print(f"Creating user {user_data['email']}...")
-                hashed_pwd = get_password_hash("admin123")
                 user = User(
                     full_name=user_data["name"],
                     email=user_data["email"],
                     hashed_password=hashed_pwd,
-                    is_superuser=True
+                    is_superuser=True,
+                    is_active=True
                 )
                 db.add(user)
-                db.commit()
                 print(f"User created: {user_data['email']} / admin123")
             else:
-                print(f"User {user_data['email']} already exists.")
+                print(f"User {user_data['email']} already exists. Updating password to 'admin123'...")
+                existing_user.hashed_password = hashed_pwd
+                existing_user.is_active = True
+                existing_user.is_superuser = True
+            
+            db.commit()
     except Exception as e:
         print(f"Error seeding user: {e}")
     finally:
